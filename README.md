@@ -43,7 +43,7 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42
 dt=DecisionTreeClassifier(criterion="entropy")
 dt.fit(x_train,y_train)
 y_pred=dt.predict(x_test)
-print("Name: Junjar U")
+print("Name: HARIVARSHAN V")
 print("Register Number: 212224230110")
 y_pred
 from sklearn import metrics
