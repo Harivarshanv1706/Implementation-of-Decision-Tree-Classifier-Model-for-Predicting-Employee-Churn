@@ -1,94 +1,93 @@
-# Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn
+# Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee
 
 ## AIM:
-To write a program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
+To write a program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
 
 ## Equipments Required:
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. Import the required libraries.
-
-2. Upload and read the dataset.
-
-3. Check for any null values using the isnull() function.
-
-4. From sklearn.tree import DecisionTreeClassifier and use criterion as entropy.
-
-5. Find the accuracy of the model and predict the required values by importing the required module from sklearn.
+1. Import the libraries and read the data frame using pandas.
+2. Calculate the null values present in the dataset and apply label encoder.
+3. Determine test and training data set and apply decison tree regression in dataset.
+4. Calculate Mean square error,data prediction and r2. 
 
 ## Program:
-```
-/*
-Program to implement the the Logistic Regression Using Gradient Descent.
+
+```python
+
+Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
+
 Developed by: HARI VARSHAN V
-RegisterNumber:  212224230092
-*/
-```
-```py
+RegisterNumber: 212224230092
+
 import pandas as pd
-data = pd.read_csv("Employee (1).csv")
+data=pd.read_csv("Salary.csv")
 data.head()
 
-data.info()
+data.info
+
 data.isnull().sum()
-data['left'].value_counts()
 
 from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-
-data['salary'] = le.fit_transform(data['salary'])
+le=LabelEncoder()
+data["Position"]=le.fit_transform(data["Position"])
 data.head()
 
-x=data[['satisfaction_level','last_evaluation','number_project','average_montly_hours','time_spend_company','Work_accident','promotion_last_5years','salary']]
-x.head()
-
-y=data['left']
+x=data[["Position","Level"]]
+y=data[["Salary"]]
 
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state =100)
+x_train, x_test, y_train, y_test=train_test_split(x,y,test_size=0.2,random_state=2)
 
-from sklearn.tree import DecisionTreeClassifier
-dt=DecisionTreeClassifier(criterion='entropy')
+from sklearn.tree import DecisionTreeRegressor
+dt=DecisionTreeRegressor()
 dt.fit(x_train,y_train)
-y_predict=dt.predict(x_test)
+y_pred=dt.predict(x_test)
 
 from sklearn import metrics
-accuracy=metrics.accuracy_score(y_test,y_predict)
-accuracy
+mse=metrics.mean_squared_error(y_test, y_pred)
+mse
 
-dt.predict([[0.5,0.8,9,260,6,0,1,2]])
+r2=metrics.r2_score(y_test,y_pred)
+r2
+
+dt.predict([[5,6]])
+
+
+
 ```
-
 ## Output:
+### Data Head:
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/b2f6f2eb-1e0c-4fbb-8784-4a8bd706c979)
 
-### DATA HEAD:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/bc753f9a-8a09-4815-89ae-79ec8e165e8a">
+### Data Info:
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/7c13b486-2ad5-4e1f-82f6-48d7f77e2649)
 
 
-<br>
+### isnull() sum():
 
-### DATASET INFO:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/f760819f-e78e-4a12-8b8c-32daeacb3410">
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/3a21fac0-df89-4aaf-827f-bc00aa3f0286)
 
-### NULL DATASET:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/67c8a973-c928-44e6-be58-ffd98b45057b">
+### Data Head for salary:
 
-### VALUES COUNT IN LEFT COLUMN:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/01f07495-4958-4186-bee8-c6632195895e">
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/0a79abfa-f32d-4394-a73d-47161eaeec30)
 
-### DATASET TRANSFORMED HEAD:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/1138eafe-ce6f-4fde-85e9-71daf0b64c00">
+### Mean Squared Error :
 
-### X.HEAD:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/569580d7-a8b0-4d20-a637-73bf2f4bc9fe">
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/3c7acf12-adb7-4a3f-807e-cb49ad260032)
 
-### ACCURACY:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/2dfb7e6d-2f2c-4b47-a09f-f766553e9dc5">
 
-### DATA PREDICTION:
-<img width="1115" alt="image" src="https://github.com/gauthamkrishna7/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/141175025/0e11798e-c2ab-44ee-875b-982d940a1851">
+### r2 Value:
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/e6f5cab9-dab9-4c69-bb0e-6fa0abee1da0)
+
+### Data prediction :
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/145972122/92b5c1d6-e495-4eaa-9a9a-8eb3a37ae0bc)
+
 
 ## Result:
-Thus the program to implement the  Decision Tree Classifier Model for Predicting Employee Churn is written and verified using python programming.
+Thus the program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee is written and verified using python programming.
